@@ -11,11 +11,14 @@ class SignUp {
     data class SignUpResponse(
         var id: Long
     ) {
+
         companion object {
-            fun fromEntity(member: Member): SignUpResponse =
-                SignUpResponse(
+            fun fromEntity(member: Member): SignUpResponse {
+                return SignUpResponse(
                     id = member.id
                 )
+            }
         }
+
     }
 }
