@@ -4,10 +4,11 @@ import org.jnjeaaaat.auth.dto.SignUp
 import org.jnjeaaaat.entity.Member
 import org.jnjeaaaat.logger
 import org.jnjeaaaat.repository.MemberRepository
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
-class AuthService(var memberRepository: MemberRepository) {
+class AuthService(var memberRepository: MemberRepository, var encoder: BCryptPasswordEncoder) {
 
     private val log = logger()
 
@@ -16,7 +17,7 @@ class AuthService(var memberRepository: MemberRepository) {
         val savedMember = memberRepository.save(
             Member(
                 uid = request.uid,
-                password = request.password
+                password = encoder.encode(request.password)
             )
         )
 
