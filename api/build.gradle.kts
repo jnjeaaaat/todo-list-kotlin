@@ -1,6 +1,7 @@
 dependencies {
     api(project(":domain"))
     api(project(":support:logging"))
+    api(project(":support:error"))
     api(project(":config"))
 
     implementation("org.springframework.boot:spring-boot-starter-webmvc")

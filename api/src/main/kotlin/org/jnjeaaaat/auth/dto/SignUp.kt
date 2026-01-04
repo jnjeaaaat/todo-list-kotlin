@@ -4,12 +4,12 @@ import org.jnjeaaaat.entity.Member
 
 class SignUp {
     data class SignUpRequest(
-        var uid: String? = null,
-        var password: String? = null
+        val uid: String,
+        val password: String
     )
 
     data class SignUpResponse(
-        var id: Long? = null
+        val id: Long? = null
     ) {
 
         companion object {
