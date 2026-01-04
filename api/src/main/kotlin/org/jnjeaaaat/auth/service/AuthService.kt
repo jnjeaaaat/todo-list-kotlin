@@ -1,6 +1,6 @@
 package org.jnjeaaaat.auth.service
 
-import org.jnjeaaaat.AuthException
+import org.jnjeaaaat.exception.AuthException
 import org.jnjeaaaat.ErrorCode.*
 import org.jnjeaaaat.auth.dto.SignUp
 import org.jnjeaaaat.entity.Member
@@ -16,7 +16,7 @@ class AuthService(var memberRepository: MemberRepository, var encoder: BCryptPas
 
     fun signUp(request: SignUp.SignUpRequest): SignUp.SignUpResponse {
 
-        checkDuplicatedUid(request.uid)
+        validateSignup(request)
 
         val savedMember = memberRepository.save(
             Member(
@@ -30,17 +30,13 @@ class AuthService(var memberRepository: MemberRepository, var encoder: BCryptPas
         return SignUp.SignUpResponse.fromEntity(savedMember)
     }
 
-    fun checkDuplicatedUid(uid: String) {
+    private fun checkDuplicatedUid(uid: String) {
         if (memberRepository.existsByUid(uid)) {
             throw AuthException(DUPLICATED_UID)
         }
     }
 
-    // TODO: UID 중복 체크 validation 추가
-    /*fun validateSignup(request: SignupRequest) {
+    private fun validateSignup(request: SignUp.SignUpRequest) {
         checkDuplicatedUid(request.uid)
-        checkPasswordComplexity(request.password)
-        checkAgreement(request.agreed)
     }
-     */
 }

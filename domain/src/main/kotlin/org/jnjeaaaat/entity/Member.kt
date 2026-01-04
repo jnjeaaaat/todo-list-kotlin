@@ -12,16 +12,16 @@ import org.jnjeaaaat.type.RoleType
 @Entity
 class Member(
     @Column(unique = true)
-    var uid: String? = null,
+    val uid: String?,
 
-    @Column(length = 100)
-    var password: String? = null,
+    @Column(length = 300)
+    var password: String?,
 
     @Column
     @Enumerated(EnumType.STRING)
     var role: RoleType = RoleType.ROLE_USER,
 
     @Id @GeneratedValue(strategy = IDENTITY)
-    var id: Long? = null
+    val id: Long? = null
 
 ) : BaseEntity()

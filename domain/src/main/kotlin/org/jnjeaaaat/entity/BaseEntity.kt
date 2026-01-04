@@ -11,10 +11,10 @@ import java.time.LocalDateTime
 @MappedSuperclass
 abstract class BaseEntity {
     @CreatedDate
-    open var createdAt: LocalDateTime? = null
-        protected set
+    var createdAt: LocalDateTime? = null
+        private set
 
     @LastModifiedDate
-    open var updatedAt: LocalDateTime? = null
-        protected set
+    var updatedAt: LocalDateTime? = null
+        private set
 }

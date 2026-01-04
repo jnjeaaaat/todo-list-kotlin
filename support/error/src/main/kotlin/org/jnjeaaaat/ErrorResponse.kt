@@ -1,6 +1,6 @@
 package org.jnjeaaaat
 
 class ErrorResponse(
-    var errorCode: ErrorCode,
-    var message: String
+    val errorCode: ErrorCode,
+    val message: String
 )
