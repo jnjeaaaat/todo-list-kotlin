@@ -1,6 +1,7 @@
 package org.jnjeaaaat.auth.controller
 
 import jakarta.servlet.http.HttpServletRequest
+import jakarta.validation.Valid
 import org.jnjeaaaat.LogUtils.Companion.logInfo
 import org.jnjeaaaat.auth.dto.SignUp
 import org.jnjeaaaat.auth.service.AuthService
@@ -15,7 +16,7 @@ class AuthController(var authService: AuthService) {
     @PostMapping("/signup")
     fun signUp(
         request: HttpServletRequest,
-        @RequestBody signUpRequest: SignUp.SignUpRequest
+        @RequestBody @Valid signUpRequest: SignUp.SignUpRequest
     ): ResponseEntity<SignUp.SignUpResponse> {
 
         logInfo(request, "회원가입 요청")

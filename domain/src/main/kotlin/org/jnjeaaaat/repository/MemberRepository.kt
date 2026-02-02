@@ -1,6 +1,6 @@
 package org.jnjeaaaat.repository
 
-import org.jnjeaaaat.entity.Member
+import org.jnjeaaaat.entity.member.Member
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

@@ -3,7 +3,7 @@ package org.jnjeaaaat.auth.service
 import org.jnjeaaaat.exception.AuthException
 import org.jnjeaaaat.ErrorCode.*
 import org.jnjeaaaat.auth.dto.SignUp
-import org.jnjeaaaat.entity.Member
+import org.jnjeaaaat.entity.member.Member
 import org.jnjeaaaat.logger
 import org.jnjeaaaat.repository.MemberRepository
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder

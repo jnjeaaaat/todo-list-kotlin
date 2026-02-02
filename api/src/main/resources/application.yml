@@ -1,4 +1,8 @@
 spring:
+  messages:
+    basename: messages
+    encoding: UTF-8
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3307/todokotlindb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
