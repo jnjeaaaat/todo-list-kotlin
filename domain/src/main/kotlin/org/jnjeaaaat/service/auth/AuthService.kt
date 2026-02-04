@@ -1,33 +1,34 @@
-package org.jnjeaaaat.auth.service
+package org.jnjeaaaat.service.auth
 
-import org.jnjeaaaat.exception.AuthException
 import org.jnjeaaaat.ErrorCode.*
-import org.jnjeaaaat.auth.dto.SignUp
+import org.jnjeaaaat.dto.member.MemberCommand
+import org.jnjeaaaat.dto.member.MemberInfo
 import org.jnjeaaaat.entity.member.Member
+import org.jnjeaaaat.exception.AuthException
 import org.jnjeaaaat.logger
 import org.jnjeaaaat.repository.MemberRepository
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
-class AuthService(var memberRepository: MemberRepository, var encoder: BCryptPasswordEncoder) {
+class AuthService(val memberRepository: MemberRepository, val encoder: BCryptPasswordEncoder) {
 
     private val log = logger()
 
-    fun signUp(request: SignUp.SignUpRequest): SignUp.SignUpResponse {
+    fun signUp(command: MemberCommand.SignUp): MemberInfo {
 
-        validateSignup(request)
+        validateSignup(command)
 
         val savedMember = memberRepository.save(
             Member(
-                uid = request.uid,
-                password = encoder.encode(request.password)
+                uid = command.uid,
+                password = encoder.encode(command.password)
             )
         )
 
         log.info { "회원가입 성공 id : ${savedMember.id}" }
 
-        return SignUp.SignUpResponse.fromEntity(savedMember)
+        return MemberInfo.fromEntity(savedMember)
     }
 
     private fun checkDuplicatedUid(uid: String) {
@@ -36,7 +37,7 @@ class AuthService(var memberRepository: MemberRepository, var encoder: BCryptPas
         }
     }
 
-    private fun validateSignup(request: SignUp.SignUpRequest) {
-        checkDuplicatedUid(request.uid)
+    private fun validateSignup(command: MemberCommand.SignUp) {
+        checkDuplicatedUid(command.uid)
     }
 }
