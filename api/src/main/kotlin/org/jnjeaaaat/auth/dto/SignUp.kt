@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
 import jakarta.validation.constraints.Size
 import org.jnjeaaaat.constant.ValidationPattern.PASSWORD_REGEX_STR
-import org.jnjeaaaat.entity.member.Member
+import org.jnjeaaaat.dto.member.MemberInfo
 
 class SignUp {
     data class SignUpRequest(
@@ -20,14 +20,12 @@ class SignUp {
     data class SignUpResponse(
         val id: Long? = null
     ) {
-
         companion object {
-            fun fromEntity(member: Member): SignUpResponse {
+            fun fromInfo(info: MemberInfo): SignUpResponse {
                 return SignUpResponse(
-                    id = member.id
+                    id = info.id
                 )
             }
         }
-
     }
 }
